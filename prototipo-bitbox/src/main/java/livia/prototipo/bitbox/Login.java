@@ -24,8 +24,6 @@ public class Login extends javax.swing.JFrame {
         this.looca = new Looca();
         this.conexao = new Conexao();
         this.con = conexao.getConnection();
-        
-        
     }
         
     @SuppressWarnings("unchecked")
@@ -204,17 +202,19 @@ public class Login extends javax.swing.JFrame {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
       
     }//GEN-LAST:event_txtEmailActionPerformed
-    
-    
+
     private void lblEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEntrarActionPerformed
+
+
+
         Sistema sistema = looca.getSistema();
-        String email =  txtEmail.getText();
-        String senha = txtSenha.getText();
-        List<Usuario> usuario = con.query(String.format("select * from usuario "
-              + "where email = '%s' and senha = '%s' ", email, senha), new BeanPropertyRowMapper(Usuario.class));
+        String email =  String.valueOf(txtEmail.getText());
+        String senha = String.valueOf(txtSenha.getText());
+
+        List<Usuario> usuarios = con.query("select * from usuario where email = ? and senha = ?", new UsuarioRowMapper(), email, senha);
        
-        System.out.println(usuario);
-        if(usuario.size()>0){
+        System.out.println(usuarios);
+        if(usuarios.size()>0){
         lblSO.setText(sistema.getSistemaOperacional());
         lblFabricante.setText(sistema.getFabricante());
         lblArquitetura.setText(sistema.getArquitetura().toString());

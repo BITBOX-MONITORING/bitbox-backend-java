@@ -15,29 +15,20 @@ public class Conexao {
 
     private JdbcTemplate connection;
 
-    public Conexao(JdbcTemplate connection) {
-        this.connection = connection;
-    }
-
     public Conexao(){
 
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource​.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        dataSource​.setUrl("jdbc:mysql://localhost/bitbox");
+        dataSource.setUrl("jdbc:sqlserver://srv-projeto-bitbox.database.windows.net:1433;databaseName=bd-projeto-bitbox");
 
-        dataSource​.setUsername("root");
+        dataSource.setUsername("admin-projeto-bitbox");
 
-        dataSource​.setPassword("7537195");
-
+        dataSource.setPassword("#Gfgrupo4");
         this.connection = new JdbcTemplate(dataSource);
-
     }
-
     public JdbcTemplate getConnection() {
-
         return connection;
-
     }
 }
