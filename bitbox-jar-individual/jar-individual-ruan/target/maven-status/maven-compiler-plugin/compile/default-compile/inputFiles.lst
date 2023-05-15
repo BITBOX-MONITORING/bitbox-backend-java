@@ -1,4 +1,7 @@
-C:\Users\Ruanc\OneDrive\Documentos\NetBeansProjects\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Conexao.java
-C:\Users\Ruanc\OneDrive\Documentos\NetBeansProjects\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Usuario.java
-C:\Users\Ruanc\OneDrive\Documentos\NetBeansProjects\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Login.java
-C:\Users\Ruanc\OneDrive\Documentos\NetBeansProjects\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\UsuarioRowMapper.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\MaquinaRowMapper.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Maquina.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Conexao.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\UsuarioRowMapper.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Usuario.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\Login.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar-individual\jar-individual-ruan\src\main\java\sptech\jar\individual\ruan\SlackAlertSender.java

@@ -1,6 +1,9 @@
 sptech\jar\individual\ruan\Conexao.class
 sptech\jar\individual\ruan\Login$2.class
 sptech\jar\individual\ruan\Usuario.class
+sptech\jar\individual\ruan\MaquinaRowMapper.class
+sptech\jar\individual\ruan\SlackAlertSender.class
+sptech\jar\individual\ruan\Maquina.class
 sptech\jar\individual\ruan\UsuarioRowMapper.class
 sptech\jar\individual\ruan\Login$1.class
 sptech\jar\individual\ruan\Login.class

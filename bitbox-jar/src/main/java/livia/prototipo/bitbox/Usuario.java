@@ -9,7 +9,7 @@ package livia.prototipo.bitbox;
  * @author livia
  */
 public class Usuario {
-    private Integer idUsuario;
+    private Integer id;
 
     private String nome;
 
@@ -19,7 +19,7 @@ public class Usuario {
     private String cargo;
 
     public Usuario(Integer id, String email, String senha) {
-        this.idUsuario = id;
+        this.id = id;
         this.email = email;
         this.senha = senha;
     }
@@ -31,16 +31,16 @@ public class Usuario {
     
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + idUsuario + ", email=" + email + ", senha=" + senha + '}';
+        return "Usuario{" + "id=" + id + ", email=" + email + ", senha=" + senha + '}';
     }
 
 
     public Integer getId() {
-        return idUsuario;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.idUsuario = id;
+        this.id = id;
     }
 
     public String getNome() {

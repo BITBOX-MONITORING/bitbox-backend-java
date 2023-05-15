@@ -4,5 +4,7 @@ livia\prototipo\bitbox\Login.class
 livia\prototipo\bitbox\Usuario.class
 livia\prototipo\bitbox\Login$1.class
 livia\prototipo\bitbox\Login$4.class
+livia\prototipo\bitbox\LoginCLI.class
+livia\prototipo\bitbox\ConexaoDocker.class
 livia\prototipo\bitbox\Login$3.class
 livia\prototipo\bitbox\UsuarioRowMapper.class
