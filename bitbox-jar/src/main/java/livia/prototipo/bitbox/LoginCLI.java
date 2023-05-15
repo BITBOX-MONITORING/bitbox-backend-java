@@ -28,9 +28,8 @@ public class LoginCLI {
       System.out.println("Digite sua senha:");
       String senha = sc.nextLine();
 
-      List<Usuario> usuarios = conn.query("select * from user where email = ? and senha = ?",
+      List<Usuario> usuarios = conn.query("select * from Funcionario where email = ? and senha = ?",
               new UsuarioRowMapper(), email, senha);
-
 
       if(!usuarios.isEmpty()){
          System.out.println("Bem vindo" + usuarios.get(0).getNome());

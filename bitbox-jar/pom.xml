@@ -58,7 +58,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>livia.prototipo.bitbox.Login</mainClass> 
+                            <mainClass>livia.prototipo.bitbox.LoginCLI</mainClass> 
                         </manifest>
                     </archive>
                 </configuration>
