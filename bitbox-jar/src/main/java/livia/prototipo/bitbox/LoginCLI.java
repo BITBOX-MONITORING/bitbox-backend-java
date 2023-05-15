@@ -5,6 +5,7 @@
 package livia.prototipo.bitbox;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.sistema.Sistema;
 import java.util.List;
 import java.util.Scanner;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,6 +22,8 @@ public class LoginCLI {
       Looca looca = new Looca();
       ConexaoDocker connDocker = new ConexaoDocker();
       JdbcTemplate conn = connDocker.getConnection();
+      
+      Sistema sistema = looca.getSistema();
 
       System.out.println("Digite seu email:");
       String email = sc.nextLine();
@@ -32,7 +35,10 @@ public class LoginCLI {
               new UsuarioRowMapper(), email, senha);
 
       if(!usuarios.isEmpty()){
-         System.out.println("Bem vindo" + usuarios.get(0).getNome());
+         System.out.println("Bem vindo " + usuarios.get(0).getNome());
+         System.out.println("Sistema Operacional: " + sistema.getSistemaOperacional());
+         System.out.println("Arquitetura: " + sistema.getArquitetura());
+         System.out.println("Fabricante: " + sistema.getFabricante());
       } else{
          System.out.println("Acesso negado!");
       }
