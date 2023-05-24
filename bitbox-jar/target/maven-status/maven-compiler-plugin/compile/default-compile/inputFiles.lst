@@ -1,6 +1,9 @@
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\UsuarioRowMapper.java
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\LoginCLI.java
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\Login.java
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\Conexao.java
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\ConexaoDocker.java
-D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\livia\prototipo\bitbox\Usuario.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\Usuario.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\Login.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\LoginCLI.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\TesteLooca.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\ConexaoDocker.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\Registro.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\Conexao.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\SlackAlert.java
+D:\SPTECH\PROJETOS\BITBOX\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\UsuarioRowMapper.java
