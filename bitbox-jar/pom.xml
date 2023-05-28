@@ -45,7 +45,7 @@
             <version>8.0.33</version>
         </dependency>
         
-         <dependency>
+        <dependency>
             <groupId>com.slack.api</groupId>
             <artifactId>slack-api-model</artifactId>
             <version>1.29.2</version>
@@ -57,6 +57,12 @@
             <groupId>com.slack.api</groupId>
             <artifactId>slack-api-client</artifactId>
             <version>1.29.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
         </dependency>
     </dependencies>
     

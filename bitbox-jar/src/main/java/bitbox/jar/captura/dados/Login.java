@@ -4,19 +4,14 @@
  */
 package bitbox.jar.captura.dados;
 
-import Entidades.UsuarioRowMapper;
-import Entidades.Usuario;
+import JdbcCommands.Registro;
+
 import Conexao.Conexao;
 import Conexao.ConexaoDocker;
-import com.github.britooo.looca.api.core.Looca;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+import JdbcCommands.InsertMaquina;
+import JdbcCommands.InsertRegistro;
+import JdbcCommands.SelectUser;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -25,23 +20,23 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Login extends javax.swing.JFrame {
 
-    Conexao conexao;
-    JdbcTemplate con;
-    Registro registro;
-    ConexaoDocker conexaodocker;
-    JdbcTemplate condocker;
+   Conexao conexao;
+   JdbcTemplate con;
+   Registro registro;
+   ConexaoDocker conexaodocker;
+   JdbcTemplate condocker;
 
-    public Login() {
-        initComponents();
-        this.registro = new Registro();
-        this.conexao = new Conexao();
-        this.con = conexao.getConnection();
-        this.conexaodocker = new ConexaoDocker();
-        this.condocker = conexaodocker.getConnection();
+   public Login() {
+      initComponents();
+      this.registro = new Registro();
+      this.conexao = new Conexao();
+      this.con = conexao.getConnection();
+      this.conexaodocker = new ConexaoDocker();
+      this.condocker = conexaodocker.getConnection();
 
-    }
+   }
 
-    @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
    private void initComponents() {
 
@@ -127,191 +122,160 @@ public class Login extends javax.swing.JFrame {
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(22, 22, 22)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(lblSO, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(32, 32, 32)
-                  .addComponent(jLabel6))
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(8, 8, 8)
-                  .addComponent(lblFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(25, 25, 25)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(16, 16, 16)
-                  .addComponent(lblArquitetura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(lblEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addGroup(jPanel1Layout.createSequentialGroup()
-                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGap(142, 142, 142))
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(txtEmail)
-                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                  .addGap(57, 57, 57)
-                  .addComponent(jLabel1)))
-            .addGap(106, 106, 106))
+              jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addGroup(jPanel1Layout.createSequentialGroup()
+                              .addGap(22, 22, 22)
+                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                      .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addComponent(lblSO, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                      .addGroup(jPanel1Layout.createSequentialGroup()
+                                              .addGap(32, 32, 32)
+                                              .addComponent(jLabel6))
+                                      .addGroup(jPanel1Layout.createSequentialGroup()
+                                              .addGap(8, 8, 8)
+                                              .addComponent(lblFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                              .addGap(25, 25, 25)
+                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                      .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addGroup(jPanel1Layout.createSequentialGroup()
+                                              .addGap(16, 16, 16)
+                                              .addComponent(lblArquitetura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                              .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                      .addComponent(lblEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                      .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                              .addGroup(jPanel1Layout.createSequentialGroup()
+                                                      .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addGap(142, 142, 142))
+                                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                      .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                      .addComponent(txtEmail)
+                                                      .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                      .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                              .addGap(57, 57, 57)
+                                              .addComponent(jLabel1)))
+                              .addGap(106, 106, 106))
       );
       jPanel1Layout.setVerticalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(41, 41, 41)
-            .addComponent(jLabel1)
-            .addGap(37, 37, 37)
-            .addComponent(jLabel2)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jLabel3)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(32, 32, 32)
-            .addComponent(lblEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                  .addComponent(jLabel5)
-                  .addGap(53, 53, 53))
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jLabel4)
-                     .addComponent(jLabel6)
-                     .addComponent(jLabel7))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(lblSO)
-                     .addComponent(lblFabricante)
-                     .addComponent(lblArquitetura))
-                  .addGap(18, 18, 18))))
+              jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addGroup(jPanel1Layout.createSequentialGroup()
+                              .addGap(41, 41, 41)
+                              .addComponent(jLabel1)
+                              .addGap(37, 37, 37)
+                              .addComponent(jLabel2)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                              .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addGap(18, 18, 18)
+                              .addComponent(jLabel3)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                              .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addGap(32, 32, 32)
+                              .addComponent(lblEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                              .addComponent(jLabel5)
+                                              .addGap(53, 53, 53))
+                                      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                      .addComponent(jLabel4)
+                                                      .addComponent(jLabel6)
+                                                      .addComponent(jLabel7))
+                                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                              .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                      .addComponent(lblSO)
+                                                      .addComponent(lblFabricante)
+                                                      .addComponent(lblArquitetura))
+                                              .addGap(18, 18, 18))))
       );
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       );
       layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       );
 
       pack();
    }// </editor-fold>                        
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {                                         
+   private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {
 
-    }                                        
+   }
 
-    private void lblEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+   private void lblEntrarActionPerformed(java.awt.event.ActionEvent evt) {
 
-        String email = String.valueOf(txtEmail.getText());
-        String senha = String.valueOf(txtSenha.getText());
+      String email = String.valueOf(txtEmail.getText());
+      String senha = String.valueOf(txtSenha.getText());
 
-        String sistemaOperacional = registro.getSistemaOperacional();
-        String fabricante = registro.getSistemaFabricante();
-        String arquitetura = registro.getSistemaArquitetura();
-        Double cpuUso = registro.getUsoCPU();
-        Double ramUso = registro.getMemoriaEmUsoGB();
-        Double ramDisponivel = registro.getMemoriaDisponivelGB();
+      String sistemaOperacional = registro.getSistemaOperacional();
+      String fabricante = registro.getSistemaFabricante();
+      String arquitetura = registro.getSistemaArquitetura();
 
-        Date dataAtual = new Date();
-        Timestamp dataHora = new Timestamp(dataAtual.getTime());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        String formatoAmericano = formatter.format(dataHora);
-        System.out.println(formatoAmericano);
+      SelectUser select = new SelectUser();
+      InsertMaquina maquina = new InsertMaquina();
+      InsertRegistro registros = new InsertRegistro();
+      select.selectAndInsert(email, senha);
 
-        List<Usuario> usuarios = con.query("select * from funcionario where email = ? and senha = ?",
-                new UsuarioRowMapper(), email, senha);
-        String queryInserirRegistros = String.format("EXEC inserir_registros '%s','%s','%s','%s','%s','%s','%s','%s','%s'",
-                formatoAmericano, registro.getUsoCPU(), registro.getMemoriaEmUsoGB(), registro.getMemoriaDisponivelGB(), "457.5", "15.2", "425.2", "457.2", email);
-        System.out.println(usuarios);
+      if (select.isLoginValido()) {
+         System.out.println("Login deu certo!");
 
-        String queryCadastrarMaquina = String.format("EXEC cadastrar_maquina '%s','%s','%s','%s'", sistemaOperacional, arquitetura, fabricante, email);
-      //String queryCadastrarMaquina = "EXEC cadastrar_maquina ?,?,?,?";
-      
-         if (usuarios.size() > 0) {
-            lblSO.setText(sistemaOperacional);
-            lblFabricante.setText(fabricante);
-            lblArquitetura.setText(arquitetura);
-            
-         //   con.update(queryCadastrarMaquina,sistemaOperacional,arquitetura,fabricante,email);
-            con.update(queryCadastrarMaquina);
+         lblSO.setText(sistemaOperacional);
+         lblFabricante.setText(fabricante);
+         lblArquitetura.setText(arquitetura);
 
-            System.out.println(queryCadastrarMaquina);
-            
-            
-              new Timer().scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    // INSERIR REGISTRO NO AZURE
+         maquina.queryCadastrarMaquina(email);
+         registros.queryInserirRegistros(email);
+      } else {
+         System.out.println("Login deu errado");
 
-                    con.update(queryInserirRegistros);
+      }
+   }
 
-                    // conMysql.update(String.format("insert into Registro values (null,'%s','%s','%s','%s','5845','8000','2seg','%s',3,5,2,1);", formattedDateTime, processador.getUso(), memoria.getEmUso(), memoria.getTotal(), processador.getUso()));
-                    System.out.println("Inseriu Sql");
+   private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {
+      // TODO add your handling code here:
+   }
 
-                try {
-                    Thread.sleep(5000); // Aguarda 5 segundos antes de inserir o próximo registro
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                }
-            }, 0, 5000);
-
-        } else {
-            System.out.println("Acesso negado!");
-        }
-    }                                         
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+   public static void main(String args[]) {
+      /* Set the Nimbus look and feel */
+      //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+      /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+       */
+      try {
+         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+               javax.swing.UIManager.setLookAndFeel(info.getClassName());
+               break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+         }
+      } catch (ClassNotFoundException ex) {
+         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      }
+      //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+      /* Create and display the form */
+      java.awt.EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            new Login().setVisible(true);
+         }
+      });
+   }
 
    // Variables declaration - do not modify                     
    private javax.swing.JLabel jLabel1;
