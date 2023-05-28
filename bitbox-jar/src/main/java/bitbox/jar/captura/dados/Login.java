@@ -7,10 +7,16 @@ package bitbox.jar.captura.dados;
 import Entidades.UsuarioRowMapper;
 import Entidades.Usuario;
 import Conexao.Conexao;
+import Conexao.ConexaoDocker;
+import com.github.britooo.looca.api.core.Looca;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -19,20 +25,24 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Login extends javax.swing.JFrame {
 
-   Conexao conexao;
-   JdbcTemplate con;
-   Registro registro;
+    Conexao conexao;
+    JdbcTemplate con;
+    Registro registro;
+    ConexaoDocker conexaodocker;
+    JdbcTemplate condocker;
 
-   public Login() {
-      initComponents();
-      this.registro = new Registro();
-      this.conexao = new Conexao();
-      this.con = conexao.getConnection();
+    public Login() {
+        initComponents();
+        this.registro = new Registro();
+        this.conexao = new Conexao();
+        this.con = conexao.getConnection();
+        this.conexaodocker = new ConexaoDocker();
+        this.condocker = conexaodocker.getConnection();
 
-   }
+    }
 
-   @SuppressWarnings("unchecked")
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    @SuppressWarnings("unchecked")
+   // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
    private void initComponents() {
 
       jPanel1 = new javax.swing.JPanel();
@@ -201,112 +211,109 @@ public class Login extends javax.swing.JFrame {
       );
 
       pack();
-   }// </editor-fold>//GEN-END:initComponents
+   }// </editor-fold>                        
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {                                         
 
-    }//GEN-LAST:event_txtEmailActionPerformed
+    }                                        
 
-    private void lblEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEntrarActionPerformed
+    private void lblEntrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
 
-       String email = String.valueOf(txtEmail.getText());
-       String senha = String.valueOf(txtSenha.getText());
+        String email = String.valueOf(txtEmail.getText());
+        String senha = String.valueOf(txtSenha.getText());
 
-       String sistemaOperacional = registro.getSistemaOperacional();
-       String fabricante = registro.getSistemaFabricante();
-       String arquitetura = registro.getSistemaArquitetura();
-       Double cpuUso = registro.getUsoCPU();
-       Double ramUso = registro.getMemoriaEmUsoGB();
-       Double ramDisponivel = registro.getMemoriaDisponivelGB();
+        String sistemaOperacional = registro.getSistemaOperacional();
+        String fabricante = registro.getSistemaFabricante();
+        String arquitetura = registro.getSistemaArquitetura();
+        Double cpuUso = registro.getUsoCPU();
+        Double ramUso = registro.getMemoriaEmUsoGB();
+        Double ramDisponivel = registro.getMemoriaDisponivelGB();
 
-       List<Usuario> usuarios = con.query("select * from usuario where email = ? and senha = ?",
-               new UsuarioRowMapper(), email, senha);
+        Date dataAtual = new Date();
+        Timestamp dataHora = new Timestamp(dataAtual.getTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String formatoAmericano = formatter.format(dataHora);
+        System.out.println(formatoAmericano);
 
-       System.out.println(usuarios);
-       if (usuarios.size() > 0) {
-          lblSO.setText(sistemaOperacional);
-          lblFabricante.setText(fabricante);
-          lblArquitetura.setText(arquitetura);
+        List<Usuario> usuarios = con.query("select * from funcionario where email = ? and senha = ?",
+                new UsuarioRowMapper(), email, senha);
+        String queryInserirRegistros = String.format("EXEC inserir_registros '%s','%s','%s','%s','%s','%s','%s','%s','%s'",
+                formatoAmericano, registro.getUsoCPU(), registro.getMemoriaEmUsoGB(), registro.getMemoriaDisponivelGB(), "457.5", "15.2", "425.2", "457.2", email);
+        System.out.println(usuarios);
 
-          String queryCadastrarMaquina = "EXEC cadastrar_maquina ?, ?, ?, ?";
-          con.update(queryCadastrarMaquina, sistemaOperacional, arquitetura, fabricante, email);
+        String queryCadastrarMaquina = String.format("EXEC cadastrar_maquina '%s','%s','%s','%s'", sistemaOperacional, arquitetura, fabricante, email);
+      //String queryCadastrarMaquina = "EXEC cadastrar_maquina ?,?,?,?";
+      
+         if (usuarios.size() > 0) {
+            lblSO.setText(sistemaOperacional);
+            lblFabricante.setText(fabricante);
+            lblArquitetura.setText(arquitetura);
+            
+         //   con.update(queryCadastrarMaquina,sistemaOperacional,arquitetura,fabricante,email);
+            con.update(queryCadastrarMaquina);
 
-          for (int i = 1; i <= 10; i++) {
-             Date dataAtual = new Date();
-             Timestamp dataHora = new Timestamp(dataAtual.getTime());
+            System.out.println(queryCadastrarMaquina);
+            
+            
+              new Timer().scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    // INSERIR REGISTRO NO AZURE
 
-             String queryInserirRegistros = "EXEC inserir_registros ?, ?, ?, ?, ?, ?, ?, ?, ?";
-             con.update(queryInserirRegistros, dataHora, cpuUso, ramUso, ramDisponivel, 245.0,
-                     200.0, "256", "189", email);
+                    con.update(queryInserirRegistros);
 
-             System.out.println("Registro inserido: " + i);
+                    // conMysql.update(String.format("insert into Registro values (null,'%s','%s','%s','%s','5845','8000','2seg','%s',3,5,2,1);", formattedDateTime, processador.getUso(), memoria.getEmUso(), memoria.getTotal(), processador.getUso()));
+                    System.out.println("Inseriu Sql");
 
-             try {
-                Thread.sleep(5000); // Aguarda 5 segundos antes de inserir o próximo registro
-             } catch (InterruptedException e) {
-                e.printStackTrace();
-             }
-          }
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+                try {
+                    Thread.sleep(5000); // Aguarda 5 segundos antes de inserir o próximo registro
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                }
+            }, 0, 5000);
 
-       } else {
-          System.out.println("Acesso negado!");
-       }
-    }//GEN-LAST:event_lblEntrarActionPerformed
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-       // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
+        } else {
+            System.out.println("Acesso negado!");
+        }
+    }                                         
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
 
-   public static void main(String args[]) {
-      /* Set the Nimbus look and feel */
-      //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-      /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-       */
-      try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-               javax.swing.UIManager.setLookAndFeel(info.getClassName());
-               break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-         }
-      } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      }
-      //</editor-fold>
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-      /* Create and display the form */
-      java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            new Login().setVisible(true);
-         }
-      });
-   }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
+   // Variables declaration - do not modify                     
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -321,5 +328,5 @@ public class Login extends javax.swing.JFrame {
    private javax.swing.JLabel lblSO;
    private javax.swing.JTextField txtEmail;
    private javax.swing.JPasswordField txtSenha;
-   // End of variables declaration//GEN-END:variables
+   // End of variables declaration                   
 }
