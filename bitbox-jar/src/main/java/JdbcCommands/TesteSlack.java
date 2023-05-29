@@ -19,8 +19,9 @@ public class TesteSlack {
    public static void main(String[] args) {
 
       JSONObject json = new JSONObject();
+      SlackAlert slack = new SlackAlert();
       
-      json.put("text", "O limite de 80% de uso da cpu foi atingido!");
+      json.put("text", slack.enviarAlertaCpu(100.00));
 
       try {
          SlackAlert.sendMessage(json);

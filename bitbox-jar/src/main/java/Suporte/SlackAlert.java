@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 public class SlackAlert {
    private static HttpClient client = HttpClient.newHttpClient();
-    private static final String webhook = "https://hooks.slack.com/services/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";
+    private static final String webhook = "https://hooks.slack.com/services/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";
 
     public static void sendMessage(JSONObject content) throws IOException, InterruptedException {;
         HttpRequest request = HttpRequest.newBuilder(URI.create(webhook))
@@ -22,49 +22,47 @@ public class SlackAlert {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
     }
-    public JSONObject enviarAlertaCpu(Double cpu) {
+    public String enviarAlertaCpu(Double cpu) {
         String mensagem = "";
         JSONObject json = new JSONObject();
 
         if(cpu > 80) {
-            mensagem = "[CRÍTICO!], o limite de 80% de uso da cpu foi atingido!";
+            mensagem = "[CRÍTICO!] O limite de 80% de uso da cpu foi atingido!";
         }else if (cpu > 50) {
-            mensagem = "[ATENÇÃO!], o limite de 50% de uso da cpu foi atingido!";
+            mensagem = "[ATENÇÃO!] O limite de 50% de uso da cpu foi atingido!";
         }
 
-        json.put("text", mensagem);
-
-        return json;
+        return mensagem;
     }
 
-    public JSONObject enviarAlertaRam(Double ram) {
+    public String enviarAlertaRam(Double ram) {
         String mensagem = "";
         JSONObject json = new JSONObject();
 
         if(ram > 80) {
-            mensagem = "[CRÍTICO!], o limite de 80% de uso da ram foi atingido!";
+            mensagem = "[CRÍTICO!] O limite de 80% de uso da ram foi atingido!";
         }else if (ram > 50) {
-            mensagem = "[ATENÇÃO!], o limite de 50% de uso da ram foi atingido!";
+            mensagem = "[ATENÇÃO!] O limite de 50% de uso da ram foi atingido!";
         }
 
         json.put("text", mensagem);
 
-        return json;
+        return mensagem;
     }
 
-    public JSONObject enviarAlertaDisco(Double disco) {
+    public String enviarAlertaDisco(Double disco) {
         String mensagem = "";
         JSONObject json = new JSONObject();
 
         if(disco > 80) {
-            mensagem = "[CRÍTICO!], o limite de 80% de uso da disco foi atingido!";
+            mensagem = "[CRÍTICO!] O limite de 80% de uso da disco foi atingido!";
         }else if (disco > 50) {
-            mensagem = "[ATENÇÃO!], o limite de 50% de uso da disco foi atingido!";
+            mensagem = "[ATENÇÃO!] O limite de 50% de uso da disco foi atingido!";
         }
 
         json.put("text", mensagem);
 
-        return json;
+        return mensagem;
     }
 
 

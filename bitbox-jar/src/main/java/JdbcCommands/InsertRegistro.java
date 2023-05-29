@@ -53,13 +53,10 @@ public class InsertRegistro {
             JSONObject json = new JSONObject();
             SlackAlert slack = new SlackAlert();
 
-            JSONObject cpuAlert = slack.enviarAlertaCpu(cpuUso + 100);
-            JSONObject ramAlert = slack.enviarAlertaRam(ramUso / (ramUso + ramDisponivel) * 100);
-            JSONObject diskAlert = slack.enviarAlertaDisco(discoUso / discoTotal * 100);
-
-            if(cpuUso + 100 > 80) {
-               json.put("text", "testeee");
-            }
+           // JSONObject cpuAlert = slack.enviarAlertaCpu(cpuUso + 100);
+            json.put("text",slack.enviarAlertaCpu(cpuUso));
+            json.put("text",slack.enviarAlertaRam(ramUso / (ramUso + ramDisponivel) * 100));
+            json.put("text",slack.enviarAlertaDisco(discoUso / discoTotal * 100));
 
             con.update("EXEC inserir_registros ?, ?, ?, ?, ?, ?, ?, ?, ?",
                     formatoAmericano, cpuUso, ramUso,ramDisponivel,redeDownload ,redeUpload , discoUso, discoTotal, email);
