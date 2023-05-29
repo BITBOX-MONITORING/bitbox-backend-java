@@ -20,6 +20,52 @@ public class SlackAlert {
         
         
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
+
     }
+    public JSONObject enviarAlertaCpu(Double cpu) {
+        String mensagem = "";
+        JSONObject json = new JSONObject();
+
+        if(cpu > 80) {
+            mensagem = "[CRÍTICO!], o limite de 80% de uso da cpu foi atingido!";
+        }else if (cpu > 50) {
+            mensagem = "[ATENÇÃO!], o limite de 50% de uso da cpu foi atingido!";
+        }
+
+        json.put("text", mensagem);
+
+        return json;
+    }
+
+    public JSONObject enviarAlertaRam(Double ram) {
+        String mensagem = "";
+        JSONObject json = new JSONObject();
+
+        if(ram > 80) {
+            mensagem = "[CRÍTICO!], o limite de 80% de uso da ram foi atingido!";
+        }else if (ram > 50) {
+            mensagem = "[ATENÇÃO!], o limite de 50% de uso da ram foi atingido!";
+        }
+
+        json.put("text", mensagem);
+
+        return json;
+    }
+
+    public JSONObject enviarAlertaDisco(Double disco) {
+        String mensagem = "";
+        JSONObject json = new JSONObject();
+
+        if(disco > 80) {
+            mensagem = "[CRÍTICO!], o limite de 80% de uso da disco foi atingido!";
+        }else if (disco > 50) {
+            mensagem = "[ATENÇÃO!], o limite de 50% de uso da disco foi atingido!";
+        }
+
+        json.put("text", mensagem);
+
+        return json;
+    }
+
+
 }

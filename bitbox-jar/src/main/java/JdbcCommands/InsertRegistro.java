@@ -27,19 +27,21 @@ public class InsertRegistro {
    JdbcTemplate con = conexaoBanco.getConnection();
    Registro registro = new Registro();
 
-   String sistemaOperacional = registro.getSistemaOperacional();
-   String fabricante = registro.getSistemaFabricante();
-   String arquitetura = registro.getSistemaArquitetura();
+
    Double cpuUso = registro.getUsoCPU();
    Double ramUso = registro.getMemoriaEmUsoGB();
    Double ramDisponivel = registro.getMemoriaDisponivelGB();
+   Double discoUso = registro.showUsado();
+   Double discoTotal = registro.showTotal();
+
+   Double redeDownload = registro.showDownload();
+   Double redeUpload = registro.showUpload();
 
    Date dataAtual = new Date();
    Timestamp dataHora = new Timestamp(dataAtual.getTime());
    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
    String formatoAmericano = formatter.format(dataHora);
-   
-   JSONObject json = new JSONObject();
+
 
    public void queryInserirRegistros(String email) {
       //Timer para rodas a cada 5 segundos
@@ -48,12 +50,19 @@ public class InsertRegistro {
          public void run() {
             // INSERIR REGISTRO NO AZURE
 
-            if (cpuUso > 80.0) {
-               json.put("text", "O limite de 80% de uso da cpu foi atingido!");
+            JSONObject json = new JSONObject();
+            SlackAlert slack = new SlackAlert();
+
+            JSONObject cpuAlert = slack.enviarAlertaCpu(cpuUso + 100);
+            JSONObject ramAlert = slack.enviarAlertaRam(ramUso / (ramUso + ramDisponivel) * 100);
+            JSONObject diskAlert = slack.enviarAlertaDisco(discoUso / discoTotal * 100);
+
+            if(cpuUso + 100 > 80) {
+               json.put("text", "testeee");
             }
 
             con.update("EXEC inserir_registros ?, ?, ?, ?, ?, ?, ?, ?, ?",
-                    formatoAmericano, registro.getUsoCPU(), registro.getMemoriaEmUsoGB(), registro.getMemoriaDisponivelGB(), registro.showDownload(), registro.showUpload(), registro.showUsado(), registro.showTotal(), email);
+                    formatoAmericano, cpuUso, ramUso,ramDisponivel,redeDownload ,redeUpload , discoUso, discoTotal, email);
 
             // conMysql.update(String.format("insert into Registro values (null,'%s','%s','%s','%s','5845','8000','2seg','%s',3,5,2,1);", formattedDateTime, processador.getUso(), memoria.getEmUso(), memoria.getTotal(), processador.getUso()));
             System.out.println("Inseriu Sql");
