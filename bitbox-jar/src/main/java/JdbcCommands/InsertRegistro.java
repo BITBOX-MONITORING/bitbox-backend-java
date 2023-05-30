@@ -30,6 +30,7 @@ public class InsertRegistro {
     ConexaoDocker conexaoDocker = new ConexaoDocker();
     JdbcTemplate conDocker = conexaoDocker.getConnection();
 
+<<<<<<< HEAD
     String sistemaOperacional = registro.getSistemaOperacional();
     String fabricante = registro.getSistemaFabricante();
     String arquitetura = registro.getSistemaArquitetura();
@@ -41,9 +42,27 @@ public class InsertRegistro {
     Timestamp dataHora = new Timestamp(dataAtual.getTime());
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     String formatoAmericano = formatter.format(dataHora);
+=======
+
+   Double cpuUso = registro.getUsoCPU();
+   Double ramUso = registro.getMemoriaEmUsoGB();
+   Double ramDisponivel = registro.getMemoriaDisponivelGB();
+   Double discoUso = registro.showUsado();
+   Double discoTotal = registro.showTotal();
+
+   Double redeDownload = registro.showDownload();
+   Double redeUpload = registro.showUpload();
+
+   Date dataAtual = new Date();
+   Timestamp dataHora = new Timestamp(dataAtual.getTime());
+   SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+   String formatoAmericano = formatter.format(dataHora);
+
+>>>>>>> ba07c09b91b51bc007b45ea3ad421382b90330d2
 
     JSONObject json = new JSONObject();
 
+<<<<<<< HEAD
     public void queryInserirRegistros(String email) {
         //Timer para rodas a cada 5 segundos
         new Timer().scheduleAtFixedRate(new TimerTask() {
@@ -77,5 +96,38 @@ public class InsertRegistro {
         }, 0, 5000);
 
     }
+=======
+            JSONObject json = new JSONObject();
+            SlackAlert slack = new SlackAlert();
+
+           // JSONObject cpuAlert = slack.enviarAlertaCpu(cpuUso + 100);
+            json.put("text",slack.enviarAlertaCpu(cpuUso));
+            json.put("text",slack.enviarAlertaRam(ramUso / (ramUso + ramDisponivel) * 100));
+            json.put("text",slack.enviarAlertaDisco(discoUso / discoTotal * 100));
+
+            con.update("EXEC inserir_registros ?, ?, ?, ?, ?, ?, ?, ?, ?",
+                    formatoAmericano, cpuUso, ramUso,ramDisponivel,redeDownload ,redeUpload , discoUso, discoTotal, email);
+
+            // conMysql.update(String.format("insert into Registro values (null,'%s','%s','%s','%s','5845','8000','2seg','%s',3,5,2,1);", formattedDateTime, processador.getUso(), memoria.getEmUso(), memoria.getTotal(), processador.getUso()));
+            System.out.println("Inseriu Sql");
+
+            try {
+               SlackAlert.sendMessage(json);
+            } catch (IOException ex) {
+               Logger.getLogger(InsertRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+               Logger.getLogger(InsertRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+               Thread.sleep(5000); // Aguarda 5 segundos antes de inserir o próximo registro
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+         }
+      }, 0, 5000);
+
+   }
+>>>>>>> ba07c09b91b51bc007b45ea3ad421382b90330d2
 
 }

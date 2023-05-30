@@ -237,7 +237,6 @@ public class Login extends javax.swing.JFrame {
          registros.queryInserirRegistros(email);
       } else {
          System.out.println("Login deu errado");
-
       }
    }
 
