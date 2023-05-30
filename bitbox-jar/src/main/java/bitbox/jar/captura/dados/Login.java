@@ -11,6 +11,9 @@ import Conexao.ConexaoDocker;
 import JdbcCommands.InsertMaquina;
 import JdbcCommands.InsertRegistro;
 import JdbcCommands.SelectUser;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -26,7 +29,7 @@ public class Login extends javax.swing.JFrame {
    ConexaoDocker conexaodocker;
    JdbcTemplate condocker;
 
-   public Login() {
+   public Login() throws IOException {
       initComponents();
       this.registro = new Registro();
       this.conexao = new Conexao();
@@ -271,7 +274,11 @@ public class Login extends javax.swing.JFrame {
       /* Create and display the form */
       java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
-            new Login().setVisible(true);
+             try {
+                 new Login().setVisible(true);
+             } catch (IOException ex) {
+                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             }
          }
       });
    }

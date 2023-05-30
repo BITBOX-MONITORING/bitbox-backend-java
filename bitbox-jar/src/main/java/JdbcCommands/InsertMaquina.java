@@ -38,7 +38,7 @@ public class InsertMaquina {
     public void queryCadastrarMaquina(String email) {
         String queryCadastrarMaquina = String.format("EXEC cadastrar_maquina '%s','%s','%s','%s'", sistemaOperacional, arquitetura, fabricante, email);
         con.update(queryCadastrarMaquina);
-        String queryCadastrarDocker = String.format("INSERT INTO Maquina values (null,'%s','%s','%s',1,null)",sistemaOperacional, fabricante,arquitetura);
+        String queryCadastrarDocker = String.format("INSERT INTO Maquina values (null,'%s','%s','%s',1,null)", sistemaOperacional, fabricante, arquitetura);
         conDocker.update(queryCadastrarDocker);
     }
 }
