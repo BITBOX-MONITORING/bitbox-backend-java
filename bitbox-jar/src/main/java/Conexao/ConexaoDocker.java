@@ -21,7 +21,7 @@ public class ConexaoDocker {
 
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        dataSource.setUrl("jdbc:mysql://0.0.0.0:3306/bdBitbox?autoReconnect=true&useSSL=false");
+        dataSource.setUrl("jdbc:mysql://3.87.58.161:3306/BitBoxDB?autoReconnect=true&useSSL=false");
 
         dataSource.setUsername("root");
 

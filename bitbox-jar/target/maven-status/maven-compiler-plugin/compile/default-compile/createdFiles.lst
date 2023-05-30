@@ -1,15 +1,10 @@
-JdbcCommands\InsertMaquina.class
 JdbcCommands\SelectUser.class
-bitbox\jar\captura\dados\Login$1.class
-bitbox\jar\captura\dados\Login$4.class
 Entidades\Usuario.class
+Suporte\SlackAlert.class
 JdbcCommands\Registro.class
 bitbox\jar\captura\dados\LoginCLI.class
 JdbcCommands\InsertRegistro.class
-bitbox\jar\captura\dados\Login$2.class
-bitbox\jar\captura\dados\Login$3.class
 Entidades\UsuarioRowMapper.class
 Conexao\Conexao.class
 JdbcCommands\InsertRegistro$1.class
-bitbox\jar\captura\dados\Login.class
-Conexao\ConexaoDocker.class
+JdbcCommands\TesteSlack.class

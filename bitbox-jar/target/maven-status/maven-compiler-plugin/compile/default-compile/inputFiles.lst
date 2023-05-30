@@ -1,11 +1,15 @@
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\Registro.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\Login.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\LoginCLI.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\SelectUser.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\ConexaoDocker.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\Usuario.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\UsuarioRowMapper.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\InsertRegistro.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\Conexao.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\InsertMaquina.java
-C:\Users\Ruanc\Downloads\bitbox-backend-java\bitbox-backend-java\bitbox-jar\src\main\java\Suporte\SlackAlert.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\Login.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\Registro.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\Suporte\SlackAlert.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\ConexaoDocker.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\Conexao\Conexao.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\Registro.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\SlackAlert.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\TesteLooca.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\UsuarioRowMapper.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\InsertMaquina.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\InsertRegistro.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\bitbox\jar\captura\dados\LoginCLI.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\TesteSlack.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\Entidades\Usuario.java
+C:\Users\thiag\OneDrive\햞ea de Trabalho\JAR GRUPO\bitbox-backend-java\bitbox-jar\src\main\java\JdbcCommands\SelectUser.java
