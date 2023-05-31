@@ -78,7 +78,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>bitbox.jar.captura.dados.Login</mainClass> 
+                            <mainClass>bitbox.jar.captura.dados.LoginCLI</mainClass> 
                         </manifest>
                     </archive>
                 </configuration>
