@@ -70,7 +70,7 @@ public class InsertRegistro {
 
                 con.update("EXEC inserir_registros ?, ?, ?, ?, ?, ?, ?, ?, ?",
                         formatoAmericano, registro.getUsoCPU(), registro.getMemoriaEmUsoGB(), registro.getMemoriaDisponivelGB(), registro.showDownload(), registro.showUpload(), registro.showUsado(), registro.showTotal(), email);
-               conDocker.update(String.format("Insert into Registro (data_registro,cpu_uso,ram_uso,ram_disponivel,rede_download,rede_upload,disco_tempo_resposta,disco_capacidade_disponivel,fk_componente,fk_maquina)values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", formatoAmericano,registro.getUsoCPU(),registro.getMemoriaEmUsoGB(),registro.getMemoriaDisponivelGB(),registro.showDownload(),registro.showUpload(), registro.showUsado(), registro.showTotal(),3,1));
+                conDocker.update(String.format("Insert into Registro (data_registro,cpu_uso,ram_uso,ram_disponivel,rede_download,rede_upload,disco_tempo_resposta,disco_capacidade_disponivel,fk_componente,fk_maquina)values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", formatoAmericano,registro.getUsoCPU(),registro.getMemoriaEmUsoGB(),registro.getMemoriaDisponivelGB(),registro.showDownload(),registro.showUpload(), registro.showUsado(), registro.showTotal(),3,1));
                 
                 System.out.println("INSERIU REGISTRO");
                 try {
@@ -94,7 +94,7 @@ public class InsertRegistro {
             SlackAlert slack = new SlackAlert();
 
            // JSONObject cpuAlert = slack.enviarAlertaCpu(cpuUso + 100);
-            json.put("text",slack.enviarAlertaCpu(cpuUso));
+            json.put("text",slack.enviarAlertaCpu(cpuUso + 100));
             json.put("text",slack.enviarAlertaRam(ramUso / (ramUso + ramDisponivel) * 100));
             json.put("text",slack.enviarAlertaDisco(discoUso / discoTotal * 100));
 
